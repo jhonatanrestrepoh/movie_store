@@ -21,6 +21,9 @@ public class ShowtimeItem {
     @Column(name = "movie_id")
     private Long movieId;
 
+    @Transient
+    private Movie movie;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

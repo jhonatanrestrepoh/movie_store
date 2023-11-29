@@ -14,7 +14,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @Entity
-@Table(name = "showtime")
+@Table(name = "tbl_showtime")
 public class Showtime {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -7,7 +7,7 @@ spring:
     config:
       server:
         git:
-          uri: file:///D:/Profundizar/taller_2_configs/3.SpringCloudConfig
+          uri: file:///D:/Profundizar/taller_2_configs/SpringCloudConfig
   security:
     user:
       name: ${CONFIG_NAME}

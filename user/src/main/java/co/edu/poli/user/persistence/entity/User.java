@@ -2,6 +2,7 @@ package co.edu.poli.user.persistence.entity;
 
 import jakarta.persistence.*;
 
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,9 +19,11 @@ public class User {
     @Column(name = "id")
     private Long id;
 
+    @NotEmpty(message = "The name can not be empty")
     @Column(name = "name")
     private String name;
 
+    @NotEmpty(message = "The lastname can not be empty")
     @Column(name = "last_name")
     private String lastName;
 

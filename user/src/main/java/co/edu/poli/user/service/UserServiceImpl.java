@@ -1,5 +1,7 @@
 package co.edu.poli.user.service;
 
+import co.edu.poli.user.dto.UserDTO;
+import co.edu.poli.user.mapper.UserDTOtoUser;
 import co.edu.poli.user.persistence.entity.User;
 import co.edu.poli.user.persistence.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,10 +16,11 @@ import java.util.List;
 public class UserServiceImpl implements UserService{
 
     private final UserRepository userRepository;
+    private final UserDTOtoUser userDTOtoUser;
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void save(User user) {
-        userRepository.save(user);
+    public void save(UserDTO userDTO) {
+        userRepository.save(userDTOtoUser.mapper(userDTO));
     }
 
     @Override

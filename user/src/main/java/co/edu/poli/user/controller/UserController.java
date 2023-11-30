@@ -1,5 +1,6 @@
 package co.edu.poli.user.controller;
 
+import co.edu.poli.user.dto.UserDTO;
 import co.edu.poli.user.persistence.entity.User;
 import co.edu.poli.user.service.UserService;
 import jakarta.validation.Valid;
@@ -16,8 +17,8 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping
-    public void save(@Valid @RequestBody User user){
-        userService.save(user);
+    public void save(@Valid @RequestBody UserDTO userDTO){
+        userService.save(userDTO);
     }
 
     @DeleteMapping("/{id}")

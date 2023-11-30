@@ -5,7 +5,6 @@ import co.edu.poli.user.mapper.UserDTOtoUser;
 import co.edu.poli.user.persistence.entity.User;
 import co.edu.poli.user.persistence.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,8 +18,8 @@ public class UserServiceImpl implements UserService{
     private final UserDTOtoUser userDTOtoUser;
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void save(UserDTO userDTO) {
-        userRepository.save(userDTOtoUser.mapper(userDTO));
+    public User save(UserDTO userDTO) {
+        return userRepository.save(userDTOtoUser.mapper(userDTO));
     }
 
     @Override

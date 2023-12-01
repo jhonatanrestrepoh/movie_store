@@ -4,6 +4,8 @@ import co.edu.poli.user.dto.UserDTO;
 import co.edu.poli.user.mapper.UserDTOtoUser;
 import co.edu.poli.user.persistence.entity.User;
 import co.edu.poli.user.persistence.repository.UserRepository;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

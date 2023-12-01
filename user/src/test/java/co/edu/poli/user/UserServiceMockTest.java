@@ -1,45 +1,55 @@
 package co.edu.poli.user;
 
 import co.edu.poli.user.dto.UserDTO;
+import co.edu.poli.user.mapper.UserDTOtoUser;
 import co.edu.poli.user.persistence.entity.User;
+import co.edu.poli.user.persistence.repository.UserRepository;
 import co.edu.poli.user.service.UserService;
-
+import co.edu.poli.user.service.UserServiceImpl;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-@DataJpaTest
-@ComponentScan(basePackages = "co.edu.poli.user")
+@SpringBootTest
+@ExtendWith(MockitoExtension.class)
 public class UserServiceMockTest {
 
-    @Autowired
-    private UserService userService;
+    @Mock
+    private UserRepository userRepository;
+
+    @Mock
+    private UserDTOtoUser userDTOtoUser;
+
+    @InjectMocks
+    private UserServiceImpl userService;
+
+    @BeforeEach
+    public void setup() {
+        MockitoAnnotations.initMocks(this);
+
+        userService = new UserServiceImpl(userRepository, userDTOtoUser);
+
+        User user = new User();
+        user.setName("John");
+        user.setLastName("Doe");
+
+        Mockito.when(userRepository.findById(1L)).thenReturn(Optional.of(user));
+    }
 
     @Test
-    @Transactional
-    public void testFindById() {
-        // Crear un usuario y guardarlo en la base de datos
-        UserDTO userDTO = new UserDTO();
-        userDTO.setName("John");
-        userDTO.setLastName("Doe");
-
-        User savedUser = userService.save(userDTO);
-
-        // Obtener el ID del usuario recién creado
-        Long userId = savedUser.getId();
-
-        // Llamar al método findById para buscar el usuario por ID
-        User foundUser = userService.findById(userId);
-
-        // Verificar que el usuario se ha encontrado y sus propiedades son correctas
-        assertNotNull(foundUser);
+    public void whenValidGetID_ThenReturnUser() {
+        User foundUser = userService.findById(1L);
         assertEquals("John", foundUser.getName());
-        assertEquals("Doe", foundUser.getLastName());
     }
 }

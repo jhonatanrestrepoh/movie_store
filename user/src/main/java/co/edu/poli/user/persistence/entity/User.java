@@ -3,7 +3,9 @@ package co.edu.poli.user.persistence.entity;
 import jakarta.persistence.*;
 
 import jakarta.validation.constraints.NotEmpty;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Objects;
@@ -13,6 +15,7 @@ import java.util.Objects;
 @Setter
 @Entity
 @Table(name = "tbl_user")
+@AllArgsConstructor @NoArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

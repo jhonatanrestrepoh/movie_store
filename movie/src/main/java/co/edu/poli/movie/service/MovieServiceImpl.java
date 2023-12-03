@@ -19,7 +19,7 @@ public class MovieServiceImpl implements MovieService{
     @Override
     @Transactional(rollbackFor = Exception.class)
     public Movie save(MovieDTO movieDTO) {
-        return movieRepository.save(movieDTOtoMovie.Mapper(movieDTO));
+        return movieRepository.save(movieDTOtoMovie.mapper(movieDTO));
     }
 
     @Override

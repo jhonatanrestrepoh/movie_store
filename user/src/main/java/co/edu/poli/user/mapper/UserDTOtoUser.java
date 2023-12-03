@@ -8,9 +8,9 @@ import org.springframework.stereotype.Component;
 public class UserDTOtoUser implements IMapper<UserDTO, User>{
     @Override
     public User mapper(UserDTO in) {
-        User task = new User();
-        task.setName(in.getName());
-        task.setLastName(in.getLastName());
-        return task;
+        User user = new User();
+        user.setName(in.getName());
+        user.setLastName(in.getLastName());
+        return user;
     }
 }

@@ -24,7 +24,8 @@ public class MovieServiceImpl implements MovieService{
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void delete(Movie movie) {
+    public void delete(Long id) {
+        Movie movie = findById(id);
         movieRepository.delete(movie);
     }
 

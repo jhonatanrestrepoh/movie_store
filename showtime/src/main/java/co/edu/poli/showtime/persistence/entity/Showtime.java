@@ -1,8 +1,8 @@
 package co.edu.poli.showtime.persistence.entity;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import co.edu.poli.showtime.model.Movie;
 import jakarta.persistence.*;
 
-import jakarta.validation.Valid;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,11 +24,13 @@ public class Showtime {
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
 
-    @Valid
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "showtime_id")
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private List<ShowtimeItem> items;
+    @ElementCollection
+    private List<Long> moviesId;
+
+
+    @Transient
+    private List<Movie> movies;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

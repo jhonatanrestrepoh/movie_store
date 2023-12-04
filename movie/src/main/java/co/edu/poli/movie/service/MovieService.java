@@ -11,4 +11,5 @@ public interface MovieService {
     void delete(Long id);
     Movie findById(Long id);
     List<Movie> findAll();
+    List<Movie> getMoviesByIds(List<Long> ids);
 }

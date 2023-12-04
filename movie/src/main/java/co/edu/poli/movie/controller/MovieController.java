@@ -6,6 +6,7 @@ import co.edu.poli.common.response.FormatResponse;
 
 import co.edu.poli.movie.dto.MovieDTO;
 
+import co.edu.poli.movie.persistence.entity.Movie;
 import co.edu.poli.movie.service.MovieService;
 import jakarta.validation.Valid;
 
@@ -13,6 +14,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
@@ -59,4 +62,8 @@ public class MovieController {
         return build.success(movieService.findAll());
     }
 
+    @GetMapping("/byIds")
+    public Response getMoviesByIds(@RequestParam List<Long> ids) {
+        return build.success(movieService.getMoviesByIds(ids));
+    }
 }

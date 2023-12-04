@@ -40,4 +40,8 @@ public class MovieServiceImpl implements MovieService{
     public List<Movie> findAll() {
         return movieRepository.findAll();
     }
+
+    public List<Movie> getMoviesByIds(List<Long> ids) {
+        return movieRepository.findAllById(ids);
+    }
 }
